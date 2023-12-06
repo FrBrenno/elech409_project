@@ -1,1 +1,3 @@
-# elech409_projet
+# AES Encryption
+
+ELECH409 Project
