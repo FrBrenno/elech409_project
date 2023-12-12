@@ -6,14 +6,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
 
-entity AES_1 is
+entity AddRoundKey is
 Port ( 
     plain_text : in std_logic_vector(127 downto 0);
     bMatrix : out std_logic_matrix(3 downto 0, 3 downto 0)
 );
-end AES_1;
+end AddRoundKey;
 
-architecture Behavioral of AES_1 is
+architecture Behavioral of AddRoundKey is
 
     --
     -- Signals
@@ -96,7 +96,6 @@ begin
     key_matrix <= hexaToMatrix(key);
     
     bMatrix : process    
-    
     variable index : integer := 0;
     begin
         for col in 0 to 3 loop
