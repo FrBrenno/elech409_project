@@ -32,9 +32,9 @@ begin
     begin
         for i in 0 to 15 loop
             temp_byte <= aMatrix(i*8+7 downto i*8);
-            wait for 1 ns;
+            wait for 1 ps;
             bMatrix(i*8+7 downto i*8) <= byte_out;
-        end loop;        
+        end loop;  
     end process;
 
 end architecture arch_SubBytes;
