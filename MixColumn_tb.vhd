@@ -12,8 +12,8 @@ architecture arch_MixColumn_tb of MixColumn_tb is
         output_data: out std_logic_vector(127 downto 0)
     ); end component;
 
-    signal plain_text : std_logic_vector(127 downto 0); 
-    signal cipher_text : std_logic_vector(127 downto 0);
+    signal plain_text : std_logic_vector(127 downto 0) := (others => '0'); 
+    signal cipher_text : std_logic_vector(127 downto 0) := (others => '0');
 
     
 begin

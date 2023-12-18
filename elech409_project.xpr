@@ -48,7 +48,7 @@
     <Option Name="BoardPart" Val="digilentinc.com:basys3:part0:1.2"/>
     <Option Name="BoardPartRepoPaths" Val="$PPRDIR/../../AppData/Roaming/Xilinx/Vivado/2023.2/xhub/board_store/xilinx_board_store"/>
     <Option Name="SourceMgmtMode" Val="DisplayOnly"/>
-    <Option Name="ActiveSimSet" Val="sim_5"/>
+    <Option Name="ActiveSimSet" Val="sim_4"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
@@ -64,7 +64,7 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
-    <Option Name="WTXSimLaunchSim" Val="81"/>
+    <Option Name="WTXSimLaunchSim" Val="99"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -177,6 +177,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_3" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_3" RelGenDir="$PGENDIR/sim_3">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/S_box.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -211,6 +212,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_4" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_4" RelGenDir="$PGENDIR/sim_4">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/MixColumn_tb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -218,6 +220,18 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/MixColumn.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/LUT_mul2.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/LUT_mul3.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -239,6 +253,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_5" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_5" RelGenDir="$PGENDIR/sim_5">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/ShiftRowns_tb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
