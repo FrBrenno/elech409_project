@@ -79,12 +79,7 @@ architecture arch_MixColumn of MixColumn is
     end replaceColumn;
 
     -- Signal declaration
-    signal input_Matrix : Matrix := (
-        (x"00", x"00", x"00", x"00"),
-        (x"00", x"00", x"00", x"00"),
-        (x"00", x"00", x"00", x"00"),
-        (x"00", x"00", x"00", x"00")
-    );
+    signal input_Matrix : Matrix;
     signal col_a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_2a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_3a : std_logic_vector(31 downto 0) := (others => '0');
@@ -116,8 +111,9 @@ begin
         input_Matrix <= hexaToMatrix(input_data);
         -- Column 0
         for i in 0 to 3 loop
+            wait for 1 ps;
             col_a <= getColumn(input_Matrix, i);
-            wait for 10 ps;
+            wait for 1 ps;
             output_matrix(0, i) := getElement(col_2a, 0) xor getElement(col_3a, 1) xor getElement(col_a, 2) xor getElement(col_a, 3);
             output_matrix(1, i) := getElement(col_a, 0) xor getElement(col_2a, 1) xor getElement(col_3a, 2) xor getElement(col_a, 3);
             output_matrix(2, i) := getElement(col_a, 0) xor getElement(col_a, 1) xor getElement(col_2a, 2) xor getElement(col_3a, 3);
