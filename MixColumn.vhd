@@ -22,7 +22,6 @@ architecture arch_MixColumn of MixColumn is
 
     -- Type declaration
     type Matrix is array (0 to 3, 0 to 3) of std_logic_vector(7 downto 0);
-    signal input_Matrix : Matrix;
     
     -- Function declaration
     function hexaToMatrix(hexa : std_logic_vector) return Matrix is
@@ -36,7 +35,7 @@ architecture arch_MixColumn of MixColumn is
         begin
             for col in 0 to 3 loop
                 for row in 0 to 3 loop
-                    result(row,col) := hexa(127-(index*8) downto 127-(7+index*8));
+                    result(row,col) := std_logic_vector(unsigned(hexa(127-(index*8) downto 127-(7+index*8))));
                     index := index + 1;
                 end loop;
             end loop;
@@ -80,29 +79,28 @@ architecture arch_MixColumn of MixColumn is
     end replaceColumn;
 
     -- Signal declaration
+    signal input_Matrix : Matrix;
     signal col_a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_2a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_3a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_b : std_logic_vector(31 downto 0) := (others => '0');
 
 begin
-    input_Matrix <= hexaToMatrix(input_data);
-    
     gen_lut_mul2: for i in 0 to 3 generate
-        mul2_inst: LUT_mul2 port map (
-            byte_in => col_a(i*8+7 downto i*8),
-            byte_out => col_2a(i*8+7 downto i*8)
+    mul2_inst: LUT_mul2 port map (
+        byte_in => col_a(i*8+7 downto i*8),
+        byte_out => col_2a(i*8+7 downto i*8)
         );
     end generate gen_lut_mul2;
-
+        
     gen_lut_mul3: for i in 0 to 3 generate
-        mul3_inst: LUT_mul3 port map (
-            byte_in => col_a(i*8+7 downto i*8),
-            byte_out => col_3a(i*8+7 downto i*8)
+    mul3_inst: LUT_mul3 port map (
+        byte_in => col_a(i*8+7 downto i*8),
+        byte_out => col_3a(i*8+7 downto i*8)
         );
-    end generate gen_lut_mul3;
-
-    xor_process: process(input_data)
+        end generate gen_lut_mul3;
+            
+    col_a_process: process(input_data)
         variable output_Matrix : Matrix := (
             (x"00", x"00", x"00", x"00"),
             (x"00", x"00", x"00", x"00"),
@@ -110,6 +108,7 @@ begin
             (x"00", x"00", x"00", x"00")
         );
     begin
+        input_Matrix <= hexaToMatrix(input_data); -- input_matrix is undefined
         for i in 0 to 3 loop
             col_a <= getColumn(input_Matrix, i);
             if i = 0 then -- First column
@@ -127,7 +126,7 @@ begin
             end if;
         end loop;
         output_data <= matrixToHexa(output_Matrix);
-    end process xor_process;
+    end process col_a_process;
 
     
 end architecture arch_MixColumn;
