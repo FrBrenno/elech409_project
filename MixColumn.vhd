@@ -67,7 +67,7 @@ architecture arch_MixColumn of MixColumn is
     function getElement(vector: std_logic_vector; index: integer) return std_logic_vector is
         variable result : std_logic_vector(7 downto 0) := (others => '0');
         begin
-            result := vector(7-(index*8) downto 0-(index*8));
+            result := vector(31-(index*8) downto 24-(index*8));
         return result;
     end getElement;
 
@@ -79,11 +79,15 @@ architecture arch_MixColumn of MixColumn is
     end replaceColumn;
 
     -- Signal declaration
-    signal input_Matrix : Matrix;
+    signal input_Matrix : Matrix := (
+        (x"00", x"00", x"00", x"00"),
+        (x"00", x"00", x"00", x"00"),
+        (x"00", x"00", x"00", x"00"),
+        (x"00", x"00", x"00", x"00")
+    );
     signal col_a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_2a : std_logic_vector(31 downto 0) := (others => '0');
     signal col_3a : std_logic_vector(31 downto 0) := (others => '0');
-    signal col_b : std_logic_vector(31 downto 0) := (others => '0');
 
 begin
     gen_lut_mul2: for i in 0 to 3 generate
@@ -100,32 +104,26 @@ begin
         );
         end generate gen_lut_mul3;
             
-    col_a_process: process(input_data)
-        variable output_Matrix : Matrix := (
+    col_a_process: process
+        variable output_matrix : Matrix := (
             (x"00", x"00", x"00", x"00"),
             (x"00", x"00", x"00", x"00"),
             (x"00", x"00", x"00", x"00"),
             (x"00", x"00", x"00", x"00")
         );
     begin
-        input_Matrix <= hexaToMatrix(input_data); -- input_matrix is undefined
+        wait on input_data;
+        input_Matrix <= hexaToMatrix(input_data);
+        -- Column 0
         for i in 0 to 3 loop
             col_a <= getColumn(input_Matrix, i);
-            if i = 0 then -- First column
-                col_b <= getElement(col_2a, 0) xor getElement(col_3a, 1) xor getElement(col_a, 2) xor getElement(col_a, 3);
-                replaceColumn(output_Matrix, i, col_b);
-            elsif i = 1 then -- Second column
-                col_b <= getElement(col_a, 0) xor getElement(col_2a, 1) xor getElement(col_3a, 2) xor getElement(col_a, 3);
-                replaceColumn(output_Matrix, i, col_b);
-            elsif i = 2 then -- Third column
-                col_b <= getElement(col_a, 0) xor getElement(col_a, 1) xor getElement(col_2a, 2) xor getElement(col_3a, 3);
-                replaceColumn(output_Matrix, i, col_b);
-            else -- Fourth column
-                col_b <= getElement(col_3a, 0) xor getElement(col_a, 1) xor getElement(col_a, 2) xor getElement(col_2a, 3);
-                replaceColumn(output_Matrix, i, col_b);
-            end if;
+            wait for 10 ps;
+            output_matrix(0, i) := getElement(col_2a, 0) xor getElement(col_3a, 1) xor getElement(col_a, 2) xor getElement(col_a, 3);
+            output_matrix(1, i) := getElement(col_a, 0) xor getElement(col_2a, 1) xor getElement(col_3a, 2) xor getElement(col_a, 3);
+            output_matrix(2, i) := getElement(col_a, 0) xor getElement(col_a, 1) xor getElement(col_2a, 2) xor getElement(col_3a, 3);
+            output_matrix(3, i) := getElement(col_3a, 0) xor getElement(col_a, 1) xor getElement(col_a, 2) xor getElement(col_2a, 3);
         end loop;
-        output_data <= matrixToHexa(output_Matrix);
+        output_data <= matrixToHexa(output_matrix);
     end process col_a_process;
 
     
