@@ -1,15 +1,17 @@
 -- Because of 'wait for 1 ps' in the process, in order to process the data,
 -- it takes 8 ps to process all the data.
 -- Strange behavior is that it only takes 8 ps for the first 128 bits, then it is instantaneous.
-LIBRARY ieee, work;
+LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
+
+library work;
 USE work.matrix_pkg.ALL;
 
 ENTITY MixColumn IS
     PORT (
-        input_data : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
-        output_data : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+        input_data : IN Matrix(0 to 3, 0 to 3);
+        output_data : OUT Matrix(0 to 3, 0 to 3)
     );
 END ENTITY MixColumn;
 
@@ -27,7 +29,6 @@ ARCHITECTURE arch_MixColumn OF MixColumn IS
     END COMPONENT;
 
     -- Signal declaration
-    SIGNAL input_Matrix : Matrix(0 TO 3, 0 TO 3);
     SIGNAL col_a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
     SIGNAL col_2a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
     SIGNAL col_3a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
@@ -56,17 +57,15 @@ BEGIN
         );
     BEGIN
         WAIT ON input_data;
-        input_Matrix <= hexaToMatrix(input_data);
         -- Column 0
         FOR i IN 0 TO 3 LOOP
-            WAIT FOR 1 ps;
-            col_a <= getColumn(input_Matrix, i);
-            WAIT FOR 1 ps;
+            col_a <= getColumn(input_data, i);
+            wait for 1 ps;
             output_matrix(0, i) := getElement(col_2a, 0) XOR getElement(col_3a, 1) XOR getElement(col_a, 2) XOR getElement(col_a, 3);
             output_matrix(1, i) := getElement(col_a, 0) XOR getElement(col_2a, 1) XOR getElement(col_3a, 2) XOR getElement(col_a, 3);
             output_matrix(2, i) := getElement(col_a, 0) XOR getElement(col_a, 1) XOR getElement(col_2a, 2) XOR getElement(col_3a, 3);
             output_matrix(3, i) := getElement(col_3a, 0) XOR getElement(col_a, 1) XOR getElement(col_a, 2) XOR getElement(col_2a, 3);
         END LOOP;
-        output_data <= matrixToHexa(output_matrix);
+        output_data <= output_matrix;
     END PROCESS col_a_process;
 END ARCHITECTURE arch_MixColumn;

@@ -48,7 +48,7 @@
     <Option Name="BoardPart" Val="digilentinc.com:basys3:part0:1.2"/>
     <Option Name="BoardPartRepoPaths" Val="$PPRDIR/../../AppData/Roaming/Xilinx/Vivado/2023.2/xhub/board_store/xilinx_board_store"/>
     <Option Name="SourceMgmtMode" Val="DisplayOnly"/>
-    <Option Name="ActiveSimSet" Val="shiftRows_sim"/>
+    <Option Name="ActiveSimSet" Val="mixColumns_sim"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
@@ -64,7 +64,7 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
-    <Option Name="WTXSimLaunchSim" Val="286"/>
+    <Option Name="WTXSimLaunchSim" Val="307"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -137,6 +137,7 @@
       </Config>
     </FileSet>
     <FileSet Name="addRoundKey_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/addRoundKey_sim" RelGenDir="$PGENDIR/addRoundKey_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/AddRoundKey_tb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -163,6 +164,7 @@
       </Config>
     </FileSet>
     <FileSet Name="subBytesMatrix_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/subBytesMatrix_sim" RelGenDir="$PGENDIR/subBytesMatrix_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/SubBytes.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -189,6 +191,7 @@
       </Config>
     </FileSet>
     <FileSet Name="subBytesLoop_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/subBytesLoop_sim" RelGenDir="$PGENDIR/subBytesLoop_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/SubBytes2_tb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -215,6 +218,7 @@
       </Config>
     </FileSet>
     <FileSet Name="subBytesGenBoxes_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/subBytesGenBoxes_sim" RelGenDir="$PGENDIR/subBytesGenBoxes_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/SubBytes3_tb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -241,6 +245,7 @@
       </Config>
     </FileSet>
     <FileSet Name="shiftRows_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/shiftRows_sim" RelGenDir="$PGENDIR/shiftRows_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/ShiftRows.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -267,6 +272,7 @@
       </Config>
     </FileSet>
     <FileSet Name="mixColumns_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/mixColumns_sim" RelGenDir="$PGENDIR/mixColumns_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/MixColumn.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
