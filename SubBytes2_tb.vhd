@@ -1,13 +1,12 @@
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity SubBytes_tb is
-end entity SubBytes_tb;
+entity SubBytes2_tb is
+end entity SubBytes2_tb;
 
-architecture arch_SubBytes_tb of SubBytes_tb is
-    component SubBytes is port(
+architecture arch_SubBytes2_tb of SubBytes2_tb is
+    component SubBytes2 is port(
         input_data: in std_logic_vector(127 downto 0);
         output_data: out std_logic_vector(127 downto 0)
     ); end component;
@@ -17,7 +16,7 @@ architecture arch_SubBytes_tb of SubBytes_tb is
 
     
 begin
-    SubBytes_instance: SubBytes port map(
+    SubBytes_instance: SubBytes2 port map(
         input_data => plain_text,
         output_data => cipher_text
     );
@@ -43,4 +42,4 @@ begin
         plain_text <= x"41D7C6537D669140DD2F179D02ACC51B";
         wait for 20 ns;       
     end process;
-end architecture arch_SubBytes_tb;
+end architecture arch_SubBytes2_tb;
