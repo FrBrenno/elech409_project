@@ -1,8 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../S_box.vhd" \
-"../../../../SubBytes.vhd" \
-"../../../../SubBytes_tb.vhd" \
-
-# Do not sort compile order
-nosort
