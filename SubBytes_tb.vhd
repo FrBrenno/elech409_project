@@ -23,7 +23,6 @@ BEGIN
 
     simulation_rounds : PROCESS
     BEGIN
-
         plain_text <= x"40BFABF406EE4D3042CA6B997A5C5816";
         WAIT FOR 5 ns;
         ASSERT (cipher_text /= x"090862BF6F28E3042C747FEEDA4A6A47")

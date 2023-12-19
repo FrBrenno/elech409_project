@@ -1,67 +1,66 @@
 
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity SubBytes2_tb is
-end entity SubBytes2_tb;
+ENTITY SubBytes2_tb IS
+END ENTITY SubBytes2_tb;
 
-architecture arch_SubBytes2_tb of SubBytes2_tb is
-    component SubBytes2 is port(
-        input_data: in std_logic_vector(127 downto 0);
-        output_data: out std_logic_vector(127 downto 0)
-    ); end component;
+ARCHITECTURE arch_SubBytes2_tb OF SubBytes2_tb IS
+    COMPONENT SubBytes2 IS PORT (
+        input_data : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        output_data : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+        );
+    END COMPONENT;
 
-    signal plain_text : std_logic_vector(127 downto 0); 
-    signal cipher_text : std_logic_vector(127 downto 0);
-
-    
-begin
-    SubBytes_instance: SubBytes2 port map(
+    SIGNAL plain_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
+    SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
+BEGIN
+    SubBytes_instance : SubBytes2 PORT MAP(
         input_data => plain_text,
         output_data => cipher_text
     );
 
-    simulation_rounds: process
-    begin
-        plain_text <= x"090862BF6F28E3042C747FEEDA4A6A47";
+    simulation_rounds : PROCESS
+    BEGIN
+        plain_text <= x"40BFABF406EE4D3042CA6B997A5C5816";
         WAIT FOR 5 ns;
-        ASSERT (cipher_text /= x"09287F476F746ABF2C4A6204DA08E3EE")
+        ASSERT (cipher_text /= x"090862BF6F28E3042C747FEEDA4A6A47")
         REPORT "1: Output is OK" SEVERITY note;
-        ASSERT (cipher_text = x"09287F476F746ABF2C4A6204DA08E3EE")
-        REPORT "1: Output is not correct" SEVERITY warning;
+        ASSERT (cipher_text /= x"090862BF6F28E3042C747FEEDA4A6A47")
+        REPORT "1: Output is INCORRECT" SEVERITY warning;
         WAIT FOR 5 ns;
 
-        plain_text <= x"894D9B03C0B512212E56883C6038534A";
+        plain_text <= x"F265E8D51FD2397BC3B9976D9076505C";
         WAIT FOR 5 ns;
-        ASSERT (cipher_text /= x"89B5884AC05653032E389B21604D123C")
+        ASSERT (cipher_text /= x"894D9B03C0B512212E56883C6038534A")
         REPORT "2: Output is OK" SEVERITY note;
-        ASSERT (cipher_text = x"89B5884AC05653032E389B21604D123C")
-        REPORT "2: Output is not correct" SEVERITY warning;
+        ASSERT (cipher_text /= x"894D9B03C0B512212E56883C6038534A")
+        REPORT "2: Output is INCORRECT" SEVERITY warning;
         WAIT FOR 5 ns;
 
-        plain_text <= x"540D10B9B3FE64AF68B0611ED6D3EA41";
+        plain_text <= x"FDF37CDB4B0C8C1BF7FCD8E94AA9BBF8";
         WAIT FOR 5 ns;
-        ASSERT (cipher_text /= x"54FE6141B3B0EAB968D310AFD60D641E")
+        ASSERT (cipher_text /= x"540D10B9B3FE64AF68B0611ED6D3EA41")
         REPORT "3: Output is OK" SEVERITY note;
-        ASSERT (cipher_text = x"54FE6141B3B0EAB968D310AFD60D641E")
-        REPORT "3: Output is not correct" SEVERITY warning;
+        ASSERT (cipher_text /= x"540D10B9B3FE64AF68B0611ED6D3EA41")
+        REPORT "3: Output is INCORRECT" SEVERITY warning;
         WAIT FOR 5 ns;
 
-        plain_text <= x"913ECEDE3A2C982EC0F976DAA9F25676";
+        plain_text <= x"ACD1EC9CA242E2C31F690F7AB704B90F";
         WAIT FOR 5 ns;
-        ASSERT (cipher_text /= x"912C76763AF956DEC0F2CE2EA93E98DA")
+        ASSERT (cipher_text /= x"913ECEDE3A2C982EC0F976DAA9F25676")
         REPORT "4: Output is OK" SEVERITY note;
-        ASSERT (cipher_text = x"912C76763AF956DEC0F2CE2EA93E98DA")
-        REPORT "4: Output is not correct" SEVERITY warning;
+        ASSERT (cipher_text /= x"913ECEDE3A2C982EC0F976DAA9F25676")
+        REPORT "4: Output is INCORRECT" SEVERITY warning;
         WAIT FOR 5 ns;
 
-        plain_text <= x"3AEF9FCF1B06E312BAA598634FA9431E";
+        plain_text <= x"A2616E5F44A54D39C029E20092B764E9";
         WAIT FOR 5 ns;
-        ASSERT (cipher_text /= x"3A06981E1BA543CFBAA99F124FEFE363")
+        ASSERT (cipher_text /= x"3AEF9FCF1B06E312BAA598634FA9431E")
         REPORT "5: Output is OK" SEVERITY note;
-        ASSERT (cipher_text = x"3A06981E1BA543CFBAA99F124FEFE363")
-        REPORT "5: Output is not correct" SEVERITY warning;
+        ASSERT (cipher_text /= x"3AEF9FCF1B06E312BAA598634FA9431E")
+        REPORT "5: Output is INCORRECT" SEVERITY warning;
         WAIT FOR 5 ns;
-    end process;
-end architecture arch_SubBytes2_tb;
+    END PROCESS;
+END ARCHITECTURE arch_SubBytes2_tb;

@@ -31,7 +31,7 @@ BEGIN
         plainText <= x"6BC1BEE22E409F96E93D7E117393172A";
         key <= x"2B7E151628AED2A6ABF7158809CF4F3C";
         WAIT FOR 5 ns;
-        ASSERT (sum /= x"40BFABF406EE4D3042CA6B997A5C5816") 
+        ASSERT (sum /= x"40BFABF406EE4D3042CA6B997A5C5816")
         REPORT "1: Output is OK" SEVERITY warning;
         WAIT FOR 5 ns;
         -- Second Round

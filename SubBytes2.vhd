@@ -1,42 +1,45 @@
 -- SubBytes2 version with 1 S_box and 1 ps delay
 -- Takes 16 ps to process 128 bits of data
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+-- without the 'wait for 1 ps' line, the process keeps running through the loop without giving
+-- the S_box enough time to process the data, so the output is incorrect. 
+-- In fact, the simulation can not run the S_box process because it is stuck in this loop.
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity SubBytes2 is
-    port (
-        input_data: in std_logic_vector(127 downto 0);
-        output_data: out std_logic_vector(127 downto 0)
+ENTITY SubBytes2 IS
+    PORT (
+        input_data : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        output_data : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
     );
-end entity SubBytes2;
+END ENTITY SubBytes2;
 
-architecture arch_SubBytes2 of SubBytes2 is
+ARCHITECTURE arch_SubBytes2 OF SubBytes2 IS
     -- Component declaration
-    component S_box is
-        port (
-            BYTE_IN : in std_logic_vector(7 downto 0);
-            BYTE_OUT : out std_logic_vector(7 downto 0)
+    COMPONENT S_box IS
+        PORT (
+            BYTE_IN : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            BYTE_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );
-    end component;
-    
-    -- Signal declaration
-    signal temp_byte: std_logic_vector(7 downto 0);
-    signal byte_out: std_logic_vector(7 downto 0);
+    END COMPONENT;
 
-begin
-    S_box_inst: S_box port map(
+    -- Signal declaration
+    SIGNAL temp_byte : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL byte_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+BEGIN
+    S_box_inst : S_box PORT MAP(
         BYTE_IN => temp_byte,
         BYTE_OUT => byte_out
     );
 
-    process
-    begin
-        for i in 0 to 15 loop
-            temp_byte <= input_data(i*8+7 downto i*8);
-            wait for 1 ps;
-            output_data(i*8+7 downto i*8) <= byte_out;
-        end loop;  
-    end process;
+    PROCESS
+    BEGIN
+        FOR i IN 0 TO 15 LOOP
+            temp_byte <= input_data(i * 8 + 7 DOWNTO i * 8);
+            WAIT FOR 1 ps;
+            output_data(i * 8 + 7 DOWNTO i * 8) <= byte_out;
+        END LOOP;
+    END PROCESS;
 
-end architecture arch_SubBytes2;
+END ARCHITECTURE arch_SubBytes2;

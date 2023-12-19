@@ -1,34 +1,66 @@
 
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity MixColumn_tb is
-end entity MixColumn_tb;
+ENTITY MixColumn_tb IS
+END ENTITY MixColumn_tb;
 
-architecture arch_MixColumn_tb of MixColumn_tb is
-    component MixColumn is port(
-        input_data: in std_logic_vector(127 downto 0);
-        output_data: out std_logic_vector(127 downto 0)
-    ); end component;
+ARCHITECTURE arch_MixColumn_tb OF MixColumn_tb IS
+    COMPONENT MixColumn IS PORT (
+        input_data : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        output_data : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+        );
+    END COMPONENT;
 
-    signal plain_text : std_logic_vector(127 downto 0) := (others => '0'); 
-    signal cipher_text : std_logic_vector(127 downto 0) := (others => '0');
-
-    
-begin
-    MixColumn_instance: MixColumn port map(
+    SIGNAL plain_text : STD_LOGIC_VECTOR(127 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0) := (OTHERS => '0');
+BEGIN
+    MixColumn_instance : MixColumn PORT MAP(
         input_data => plain_text,
         output_data => cipher_text
     );
 
-    simulation_rounds: process
-    begin
+    simulation_rounds : PROCESS
+    BEGIN
         plain_text <= x"09287F476F746ABF2C4A6204DA08E3EE";
-        wait for 10 ns;
+        WAIT FOR 5 ns;
+        ASSERT (cipher_text /= x"529F16C2978615CAE01AAE54BA1A2659")
+        REPORT "1: Output is OK" SEVERITY note;
+        ASSERT (cipher_text /= x"529F16C2978615CAE01AAE54BA1A2659")
+        REPORT "1: Output is INCORRECT" SEVERITY warning;
+        WAIT FOR 5 ns;
+
         plain_text <= x"89B5884AC05653032E389B21604D123C";
-        wait for 10 ns;
+        WAIT FOR 5 ns;
+        ASSERT (cipher_text /= x"0F31E929319A3558AEC9589339F04D87")
+        REPORT "2: Output is OK" SEVERITY note;
+        ASSERT (cipher_text /= x"0F31E929319A3558AEC9589339F04D87")
+        REPORT "2: Output is INCORRECT" SEVERITY warning;
+        WAIT FOR 5 ns;
+
         plain_text <= x"54FE6141B3B0EAB968D310AFD60D641E";
-        wait for 10 ns;
-    end process;
-end architecture arch_MixColumn_tb;
+        WAIT FOR 5 ns;
+        ASSERT (cipher_text /= x"9151ABE1E5541CFD014A713EDA7E3134")
+        REPORT "3: Output is OK" SEVERITY note;
+        ASSERT (cipher_text /= x"9151ABE1E5541CFD014A713EDA7E3134")
+        REPORT "3: Output is INCORRECT" SEVERITY warning;
+        WAIT FOR 5 ns;
+
+        plain_text <= x"912C76763AF956DEC0F2CE2EA93E98DA";
+        WAIT FOR 5 ns;
+        ASSERT (cipher_text /= x"4D25CB1EECF716467658C73B49BCC9E9")
+        REPORT "4: Output is OK" SEVERITY note;
+        ASSERT (cipher_text /= x"4D25CB1EECF716467658C73B49BCC9E9")
+        REPORT "4: Output is INCORRECT" SEVERITY warning;
+        WAIT FOR 5 ns;
+
+        plain_text <= x"3A06981E1BA543CFBAA99F124FEFE363";
+        WAIT FOR 5 ns;
+        ASSERT (cipher_text /= x"F89B35EC4E40724E025B00C734D7D81B")
+        REPORT "5: Output is OK" SEVERITY note;
+        ASSERT (cipher_text /= x"F89B35EC4E40724E025B00C734D7D81B")
+        REPORT "5: Output is INCORRECT" SEVERITY warning;
+        WAIT FOR 5 ns;
+    END PROCESS;
+END ARCHITECTURE arch_MixColumn_tb;

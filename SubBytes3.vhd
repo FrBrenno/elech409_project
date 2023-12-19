@@ -1,36 +1,37 @@
 -- SubBytes version with 16 S-boxes and no delay
 -- 128-bits input is processed instantaneously
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity SubBytes3 is
-    port (
-        input_data: in std_logic_vector(127 downto 0);
-        output_data: out std_logic_vector(127 downto 0)
+ENTITY SubBytes3 IS
+    PORT (
+        input_data : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        output_data : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
     );
-end entity SubBytes3;
+END ENTITY SubBytes3;
 
-architecture arch_SubBytes3 of SubBytes3 is
+ARCHITECTURE arch_SubBytes3 OF SubBytes3 IS
     -- Component declaration
-    component S_box is
-        port (
-            BYTE_IN : in std_logic_vector(7 downto 0);
-            BYTE_OUT : out std_logic_vector(7 downto 0)
-        ); end component;
-    
-    -- Signal declaration
-    signal temp: std_logic_vector(127 downto 0);
+    COMPONENT S_box IS
+        PORT (
+            BYTE_IN : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            BYTE_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+        );
+    END COMPONENT;
 
-begin
+    -- Signal declaration
+    SIGNAL temp : STD_LOGIC_VECTOR(127 DOWNTO 0);
+
+BEGIN
     -- Generate statement to create multiple S_box instances
-    gen_sboxes: for i in 0 to 15 generate
-        S_box_inst: S_box
-            port map (
-                BYTE_IN  => input_data(8*i + 7 downto 8*i),
-                BYTE_OUT => temp(8*i + 7 downto 8*i)
-            );
-    end generate;
+    gen_sboxes : FOR i IN 0 TO 15 GENERATE
+        S_box_inst : S_box
+        PORT MAP(
+            BYTE_IN => input_data(8 * i + 7 DOWNTO 8 * i),
+            BYTE_OUT => temp(8 * i + 7 DOWNTO 8 * i)
+        );
+    END GENERATE;
     output_data <= temp;
 
-end architecture arch_SubBytes3;
+END ARCHITECTURE arch_SubBytes3;
