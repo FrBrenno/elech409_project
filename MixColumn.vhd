@@ -29,43 +29,32 @@ ARCHITECTURE arch_MixColumn OF MixColumn IS
     END COMPONENT;
 
     -- Signal declaration
-    SIGNAL col_a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL col_2a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL col_3a : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL matrix_2 : Matrix(0 to 3, 0 to 3);
+    SIGNAL matrix_3 : Matrix(0 to 3, 0 to 3);
 
 BEGIN
-    gen_lut_mul2 : FOR i IN 0 TO 3 GENERATE
+    gen_lut_mul2 : For i in 0 to 15 GENERATE
         mul2_inst : LUT_mul2 PORT MAP(
-            byte_in => col_a(i * 8 + 7 DOWNTO i * 8),
-            byte_out => col_2a(i * 8 + 7 DOWNTO i * 8)
+            byte_in => input_data(i / 4, i MOD 4),
+            byte_out => matrix_2(i / 4, i MOD 4)
         );
     END GENERATE gen_lut_mul2;
 
-    gen_lut_mul3 : FOR i IN 0 TO 3 GENERATE
+    gen_lut_mul3 : FOR i IN 0 TO 15 GENERATE
         mul3_inst : LUT_mul3 PORT MAP(
-            byte_in => col_a(i * 8 + 7 DOWNTO i * 8),
-            byte_out => col_3a(i * 8 + 7 DOWNTO i * 8)
+            byte_in => input_data(i / 4, i MOD 4),
+            byte_out => matrix_3(i / 4, i MOD 4)
         );
     END GENERATE gen_lut_mul3;
 
-    col_a_process : PROCESS
-        VARIABLE output_matrix : Matrix(0 to 3, 0 to 3) := (
-            (x"00", x"00", x"00", x"00"),
-            (x"00", x"00", x"00", x"00"),
-            (x"00", x"00", x"00", x"00"),
-            (x"00", x"00", x"00", x"00")
-        );
-    BEGIN
-        WAIT ON input_data;
-        -- Column 0
-        FOR i IN 0 TO 3 LOOP
-            col_a <= getColumn(input_data, i);
-            wait for 1 ps;
-            output_matrix(0, i) := getElement(col_2a, 0) XOR getElement(col_3a, 1) XOR getElement(col_a, 2) XOR getElement(col_a, 3);
-            output_matrix(1, i) := getElement(col_a, 0) XOR getElement(col_2a, 1) XOR getElement(col_3a, 2) XOR getElement(col_a, 3);
-            output_matrix(2, i) := getElement(col_a, 0) XOR getElement(col_a, 1) XOR getElement(col_2a, 2) XOR getElement(col_3a, 3);
-            output_matrix(3, i) := getElement(col_3a, 0) XOR getElement(col_a, 1) XOR getElement(col_a, 2) XOR getElement(col_2a, 3);
-        END LOOP;
-        output_data <= output_matrix;
-    END PROCESS col_a_process;
+    process_matrix : PROCESS (matrix_2, matrix_3)
+    begin
+        for i in 0 to 3 loop
+            output_data(0, i) <= matrix_2(0, i) XOR matrix_3(1, i) XOR input_data(2, i) XOR input_data(3, i);
+            output_data(1, i) <= input_data(0, i) XOR matrix_2(1, i) XOR matrix_3(2, i) XOR input_data(3, i);
+            output_data(2, i) <= input_data(0, i) XOR input_data(1, i) XOR matrix_2(2, i) XOR matrix_3(3, i);
+            output_data(3, i) <= matrix_3(0, i) XOR input_data(1, i) XOR input_data(2, i) XOR matrix_2(3, i);
+        end loop;
+    end PROCESS process_matrix;
+    
 END ARCHITECTURE arch_MixColumn;

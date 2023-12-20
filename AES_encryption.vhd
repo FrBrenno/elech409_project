@@ -38,15 +38,17 @@ ARCHITECTURE arch_aes_encryption OF AES_encryption IS
     END COMPONENT;
 
     -- Signal declarations
-    SIGNAL currentRound : INTEGER RANGE 0 TO 10 := 0;
+    TYPE Step IS (init_step, addroundkey_step, subbytes_step, shiftrows_step, mixcolumns_step);
+    SIGNAL currentStep : Step := init_step;
+    SIGNAL stepIndex : INTEGER RANGE 0 TO 10 := 0;
 
-    signal addroundkey_out : Matrix(0 TO 3, 0 TO 3);
-    signal subbytes_out : Matrix(0 TO 3, 0 TO 3);
-    signal shiftrows_out : Matrix(0 TO 3, 0 TO 3);
-    signal mixcolumns_out : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL addroundkey_out : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL subbytes_out : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL shiftrows_out : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL mixcolumns_out : Matrix(0 TO 3, 0 TO 3);
 
-    SIGNAL input_matrix : Matrix(0 TO 3, 0 TO 3);
-    SIGNAL key_matrix : Matrix(0 TO 3, 0 TO 3);
+    signal input_matrix : Matrix(0 TO 3, 0 TO 3);
+    signal key_matrix : Matrix(0 TO 3, 0 TO 3);
     SIGNAL output_matrix : Matrix(0 TO 3, 0 TO 3);
 
     -- function declarations
@@ -62,8 +64,6 @@ ARCHITECTURE arch_aes_encryption OF AES_encryption IS
     END FUNCTION;
 
 BEGIN
-    -- IDEA: create module AES_ROUND and AES_ENCRYPTION contains 10 AES_ROUND interconnected
-    key_matrix <= hexaToMatrix(key);
     -- Each step should take 1 clock cycle
     -- Instantiate components
     addroundkey_proc : addRoundKey PORT MAP(
@@ -84,35 +84,36 @@ BEGIN
         output_data => mixcolumns_out
     );
 
-    PROCESS (clk, rst)
+    round_scheduler: PROCESS (clk, rst)
     BEGIN
         IF rst = '1' THEN
-            currentRound <= 0; -- Reset the round counter
+            stepIndex <= 0; -- Reset the round counter
             input_matrix <= zeroMatrix;
             key_matrix <= zeroMatrix;
             output_matrix <= zeroMatrix;
         ELSIF rising_edge(clk) THEN
-            -- Execute the current round
-            CASE currentRound IS
-                WHEN 0 =>
-                    input_matrix <= hexaToMatrix(plain_text);
-                    key_matrix <= hexaToMatrix(key);
-                WHEN 10 =>
-                    null;
-                WHEN OTHERS =>
-                    input_matrix <= mixcolumns_out;
-            END CASE;
-            currentRound <= currentRound + 1;
-            -- Output the result in the final round
-            IF currentRound = 10 THEN
-                output_matrix <= addroundkey_out;
+            IF currentStep = init_step THEN
+                input_matrix <= hexaToMatrix(plain_text);
+                key_matrix <= hexaToMatrix(key);
+                currentStep <= addroundkey_step;
+            ELSIF currentStep = addroundkey_step THEN
+                currentStep <= subbytes_step;
+            ELSIF currentStep = subbytes_step THEN
+                currentStep <= shiftrows_step;
+            ELSIF currentStep = shiftrows_step THEN
+                currentStep <= mixcolumns_step;
+            ELSIF currentStep = mixcolumns_step THEN
+                currentStep <= addroundkey_step;
             END IF;
+            stepIndex <= stepIndex + 1;
+            if stepIndex = 4 then
+                output_matrix <= mixcolumns_out;
+            end if;
         END IF;
-    END PROCESS;
+        END PROCESS round_scheduler;
 
-    -- Assign the final result to the cipher_text
-    cipher_text <= matrixToHexa(output_matrix);
-    -- Assertion for completion (modify as needed)
-    done <= '1' WHEN currentRound = 10 ELSE
-        '0';
-END arch_aes_encryption;
+        -- Assign the final result to the cipher_text
+        cipher_text <= matrixToHexa(output_matrix);
+        -- Assertion for completion (modify as needed)
+        done <= '1' WHEN stepIndex = 10 ELSE '0';
+    END arch_aes_encryption;

@@ -29,7 +29,7 @@ BEGIN
     simulation_rounds : PROCESS
     BEGIN
         plain_text <= x"09287F476F746ABF2C4A6204DA08E3EE";
-        WAIT ON output_matrix;
+        WAIT for 1 ps;
         cipher_text <= matrixToHexa(output_matrix);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"529F16C2978615CAE01AAE54BA1A2659")
