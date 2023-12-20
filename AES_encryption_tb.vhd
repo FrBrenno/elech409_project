@@ -1,11 +1,55 @@
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
 
-entity AES_encryption_tb is
-end AES_encryption_tb;
+ENTITY AES_encryption_tb IS
+END AES_encryption_tb;
 
-architecture tb_arch of AES_encryption_tb is
+ARCHITECTURE tb_arch OF AES_encryption_tb IS
+    COMPONENT AES_encryption
+        PORT (
+            plain_text, key : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+            clk : IN STD_LOGIC;
+            rst : IN STD_LOGIC;
+            cipher_text : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
+            done : OUT STD_LOGIC
+        );
+    END COMPONENT;
 
-begin
+    SIGNAL plain_text, key, cipher_text_output : STD_LOGIC_VECTOR(127 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL clk, rst : STD_LOGIC := '0';
+    SIGNAL done : STD_LOGIC;
 
-end tb_arch;
+BEGIN
+    uut : AES_encryption
+    PORT MAP(
+        plain_text => plain_text,
+        key => key,
+        clk => clk,
+        rst => rst,
+        cipher_text => cipher_text_output,
+        done => done
+    );
+
+    clk_process : PROCESS
+    BEGIN
+        WAIT FOR 5 ns;
+        clk <= NOT clk;
+    END PROCESS;
+
+    reset_process : PROCESS
+    BEGIN
+        WAIT FOR 50 ns;
+        rst <= NOT rst;
+    END PROCESS;
+
+    stimulus : PROCESS
+    BEGIN
+        plain_text <= x"6BC1BEE22E409F96E93D7E117393172A";
+        key <= x"2B7E151628AED2A6ABF7158809CF4F3C";
+        WAIT FOR 400 ns;
+        ASSERT (cipher_text_output = x"85539F4136AD7E3A35407A244C60C16D")
+        REPORT "1: INCORRECT OUTPUT\n" SEVERITY note;
+        WAIT FOR 5 ns;
+    END PROCESS;
+
+END tb_arch;

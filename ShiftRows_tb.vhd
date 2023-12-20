@@ -3,8 +3,8 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.math_real.ALL;
 
-library work;
-use work.matrix_pkg.all;
+LIBRARY work;
+USE work.matrix_pkg.ALL;
 
 ENTITY ShiftRows_tb IS
 END ENTITY;
@@ -30,7 +30,7 @@ BEGIN
     stim : PROCESS
     BEGIN
         plain_text <= x"090862BF6F28E3042C747FEEDA4A6A47";
-        WAIT FOR 1 ps;
+        WAIT ON output_data;
         cipher_text <= matrixToHexa(output_data);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"09287F476F746ABF2C4A6204DA08E3EE")
@@ -38,7 +38,7 @@ BEGIN
         WAIT FOR 5 ns;
 
         plain_text <= x"894D9B03C0B512212E56883C6038534A";
-        WAIT FOR 1 ps;
+        WAIT ON output_data;
         cipher_text <= matrixToHexa(output_data);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"89B5884AC05653032E389B21604D123C")
@@ -46,7 +46,7 @@ BEGIN
         WAIT FOR 5 ns;
 
         plain_text <= x"540D10B9B3FE64AF68B0611ED6D3EA41";
-        WAIT FOR 1 ps;
+        WAIT ON output_data;
         cipher_text <= matrixToHexa(output_data);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"54FE6141B3B0EAB968D310AFD60D641E")
@@ -54,7 +54,7 @@ BEGIN
         WAIT FOR 5 ns;
 
         plain_text <= x"913ECEDE3A2C982EC0F976DAA9F25676";
-        WAIT FOR 1 ps;
+        WAIT ON output_data;
         cipher_text <= matrixToHexa(output_data);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"912C76763AF956DEC0F2CE2EA93E98DA")
@@ -62,7 +62,7 @@ BEGIN
         WAIT FOR 5 ns;
 
         plain_text <= x"3AEF9FCF1B06E312BAA598634FA9431E";
-        WAIT FOR 1 ps;
+        WAIT ON output_data;
         cipher_text <= matrixToHexa(output_data);
         WAIT FOR 1 ps;
         ASSERT (cipher_text = x"3A06981E1BA543CFBAA99F124FEFE363")

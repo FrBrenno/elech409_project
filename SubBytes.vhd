@@ -23,12 +23,10 @@ ARCHITECTURE arch_SubBytes OF SubBytes IS
         );
     END COMPONENT;
 
-    -- Signal declaration
-    SIGNAL temp : Matrix(0 TO 3, 0 TO 3);
-
 BEGIN
     -- Generate statement to create multiple S_box instances
     gen_sboxes : FOR i IN 0 TO 15 GENERATE
+        
         S_box_inst : S_box
         PORT MAP(
             BYTE_IN => input_data(i/4, i REM 4),
