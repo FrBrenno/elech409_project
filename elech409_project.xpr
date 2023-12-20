@@ -64,7 +64,7 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
-    <Option Name="WTXSimLaunchSim" Val="363"/>
+    <Option Name="WTXSimLaunchSim" Val="385"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -281,6 +281,7 @@
       </Config>
     </FileSet>
     <FileSet Name="aes_encryption_sim" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/aes_encryption_sim" RelGenDir="$PGENDIR/aes_encryption_sim">
+      <Filter Type="Srcs"/>
       <File Path="$PPRDIR/AES_encryption.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>

@@ -16,7 +16,8 @@ ARCHITECTURE tb_arch OF AES_encryption_tb IS
     END COMPONENT;
 
     SIGNAL plain_text, key, cipher_text_output : STD_LOGIC_VECTOR(127 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL clk, rst : STD_LOGIC := '0';
+    SIGNAL clk: STD_LOGIC := '0';
+    signal rst : STD_LOGIC := '1'; 
     SIGNAL done : STD_LOGIC;
 
 BEGIN
@@ -32,14 +33,14 @@ BEGIN
 
     clk_process : PROCESS
     BEGIN
-        WAIT FOR 5 ns;
         clk <= NOT clk;
+        WAIT FOR 5 ns;
     END PROCESS;
 
     reset_process : PROCESS
     BEGIN
-        WAIT FOR 50 ns;
         rst <= NOT rst;
+        WAIT FOR 800 ns;
     END PROCESS;
 
     stimulus : PROCESS

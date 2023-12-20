@@ -36,6 +36,11 @@ ARCHITECTURE arch_aes_encryption OF AES_encryption IS
     -- Signal declarations
     SIGNAL currentRound : INTEGER RANGE 0 TO 10 := 0; 
 
+    signal addroundkey_in : Matrix(0 to 3, 0 to 3);
+    signal subbytes_in : Matrix(0 to 3, 0 to 3);
+    signal shiftrows_in : Matrix(0 to 3, 0 to 3);
+    signal mixcolumns_in : Matrix(0 to 3, 0 to 3);
+
     SIGNAL addroundkey_out : Matrix(0 to 3, 0 to 3);
     SIGNAL subbytes_out : Matrix(0 to 3, 0 to 3);
     SIGNAL shiftrows_out : Matrix(0 to 3, 0 to 3);
@@ -61,23 +66,26 @@ BEGIN
     -- Each step should take 1 clock cycle
     -- Instantiate components
     addroundkey_proc : addRoundKey port map (
-        plain_text_matrix => input_matrix,
+        plain_text_matrix => addroundkey_in,
         key_matrix => key_matrix,
         sum_matrix => addroundkey_out
     );
     subbytes_proc : subBytes port map (
-        input_data => addroundkey_out,
+        input_data => subbytes_in,
         output_data => subbytes_out
     );
     shiftrows_proc : shiftRows port map (
-        input_data => subbytes_out,
+        input_data => shiftrows_in,
         output_data => shiftrows_out
     );
     mixcolumns_proc : mixColumn port map (
-        input_data => shiftrows_out,
+        input_data => mixcolumns_in,
         output_data => mixcolumns_out
     );
-
+    
+    input_matrix <= hexaToMatrix(plain_text);
+    key_matrix <= hexaToMatrix(key);
+    
     process (clk, rst)
     begin
         if rst = '1' then
@@ -89,28 +97,27 @@ BEGIN
             -- Execute the current round
             case currentRound is
                 when 0 =>
-                    input_matrix <= hexaToMatrix(plain_text);
-                    key_matrix <= hexaToMatrix(key);
+                    addroundkey_in <= input_matrix;
                 when 1 =>
-                    input_matrix <= addroundkey_out;
+                    subbytes_in <= addroundkey_out;
                 when 2 =>
-                    input_matrix <= subbytes_out;
+                    shiftrows_in <= subbytes_out;
                 when 3 =>
-                    input_matrix <= shiftrows_out;
+                    mixcolumns_in <= shiftrows_out;
                 when 4 =>
-                    input_matrix <= mixcolumns_out;
+                    addroundkey_in <= mixcolumns_out;
                 when 5 =>
-                    input_matrix <= addroundkey_out;
+                    subbytes_in <= addroundkey_out;
                 when 6 =>
-                    input_matrix <= subbytes_out;
+                    shiftrows_in <= subbytes_out;
                 when 7 =>
-                    input_matrix <= shiftrows_out;
+                    mixcolumns_in <= shiftrows_out;
                 when 8 =>
-                    input_matrix <= mixcolumns_out;
+                    addroundkey_in <= mixcolumns_out;
                 when 9 =>
-                    input_matrix <= addroundkey_out;
+                    subbytes_in <= addroundkey_out;
                 when 10 =>
-                    input_matrix <= subbytes_out;
+                    shiftrows_in <= subbytes_out;
             end case;
             currentRound <= currentRound + 1;
             -- Output the result in the final round
