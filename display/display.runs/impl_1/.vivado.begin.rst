@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="coren" Host="PC-CORENTIN" Pid="2752" HostCore="8" HostMemory="08441442304">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="coren" Host="PC-CORENTIN" Pid="24952" HostCore="8" HostMemory="08441442304">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="coren" Host="PC-CORENTIN" Pid="2616" HostCore="8" HostMemory="08441442304">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="coren" Host="PC-CORENTIN" Pid="16388" HostCore="8" HostMemory="08441442304">
+    </Process>
+</ProcessHandle>
