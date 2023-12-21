@@ -1,0 +1,315 @@
+/*
+
+AMD Vivado v2023.2 (64-bit) [Major: 2023, Minor: 2]
+SW Build: 4029153 on Fri Oct 13 20:14:34 MDT 2023
+IP Build: 4028589 on Sat Oct 14 00:45:43 MDT 2023
+IP Build: 4028589 on Sat Oct 14 00:45:43 MDT 2023
+
+Process ID (PID): 17532
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Thu Dec 21 15:32:59 CET 2023
+Time zone: 	Central European Standard Time (Europe/Brussels)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Local screen bounds: x = 0, y = 0, width = 1920, height = 1080
+Screen resolution (DPI): 125
+Available screens: 1
+Default font: family=Segoe UI,name=Segoe UI,style=plain,size=15
+Scale size: 19
+OS font scaling: 125%
+Anti-Alias Enabled: false
+
+Java version: 	17.0.7 64-bit
+JavaFX version: 17.0.1
+Java home: 	C:/Vivado/2023.2/tps/win64/jre17.0.7_7
+Java executable: 	C:/Vivado/2023.2/tps/win64/jre17.0.7_7/bin/java.exe
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Dsun.java2d.d3d=false, -Dsun.awt.nopixfmt=true, -Dsun.java2d.dpiaware=true, -Dsun.java2d.uiScale.enabled=false, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, -XX:+UseStringDeduplication, -XX:MaxGCPauseMillis=200, -XX:+ParallelRefProcEnabled, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, -XX:NewSize=80m, -XX:MaxNewSize=80m, -Xms512m, -Xmx4072m, -Xss10m]
+Java initial memory (-Xms): 	512 MB
+Java maximum memory (-Xmx):	 3 GB
+
+User name: 	coren
+User home directory: C:/Users/coren
+User working directory: C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project
+User country: 	BE
+User language: 	fr
+User locale: 	fr_BE
+
+RDI_BASEROOT: C:/Vivado
+HDI_APPROOT: C:/Vivado/2023.2
+RDI_DATADIR: C:/Vivado/2023.2/data
+RDI_BINDIR: C:/Vivado/2023.2/bin
+
+Vivado preferences file: C:/Users/coren/AppData/Roaming/Xilinx/Vivado/2023.2/vivado.xml
+Vivado preferences directory: C:/Users/coren/AppData/Roaming/Xilinx/Vivado/2023.2/
+Vivado layouts directory: C:/Users/coren/AppData/Roaming/Xilinx/Vivado/2023.2/data/layouts
+PlanAhead jar file: 	C:/Vivado/2023.2/lib/classes/planAhead.jar
+Vivado log file: 	C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/vivado.log
+Vivado journal file: 	C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/vivado.jou
+Engine tmp dir: 	C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/.Xil/Vivado-17532-PC-Corentin
+Non-Default Parameters:	[]
+
+Xilinx & AMD Environment Variables
+--------------------------------------------------------------------------------------------
+JAVA_HOME: C:\Program Files\Java\jdk-19
+RDI_APPROOT: C:/Vivado/2023.2
+RDI_ARGS:  -gui_launcher_event rodinguilauncherevent12088 "C:\Users\coren\Documents\Unif\Digital architecture and design\elech409_project\elech409_project.xpr"
+RDI_ARGS_FUNCTION: RDI_EXEC_DEFAULT
+RDI_BASEROOT: C:/Vivado
+RDI_BINDIR: C:/Vivado/2023.2/bin
+RDI_BINROOT: C:/Vivado/2023.2/bin
+RDI_BUILD: yes
+RDI_CHECK_PROG: True
+RDI_DATADIR: C:/Vivado/2023.2/data
+RDI_INSTALLROOT: C:
+RDI_INSTALLVER: 2023.2
+RDI_INSTALLVERSION: 2023.2
+RDI_ISE_PLATFORM: nt64
+RDI_JAVACEFROOT: C:/Vivado/2023.2/tps/win64/java-cef-95.0.4638.69
+RDI_JAVAFXROOT: C:/Vivado/2023.2/tps/win64/javafx-sdk-17.0.1
+RDI_JAVAROOT: C:/Vivado/2023.2/tps/win64/jre17.0.7_7
+RDI_JAVA_VERSION: 17.0.7_7
+RDI_LIBDIR: C:/Vivado/2023.2/lib/win64.o
+RDI_MINGW_LIB: C:/Vivado/2023.2\tps\mingw\6.2.0\win64.o\nt\bin;C:/Vivado/2023.2\tps\mingw\6.2.0\win64.o\nt\libexec\gcc\x86_64-w64-mingw32\6.2.0
+RDI_OPT_EXT: .o
+RDI_PLATFORM: win64
+RDI_PREPEND_PATH: C:/Vivado/2023.2/ids_lite/ISE/bin/nt64;C:/Vivado/2023.2/ids_lite/ISE/lib/nt64
+RDI_PROG: C:/Vivado/2023.2/bin/unwrapped/win64.o/vivado.exe
+RDI_PROGNAME: vivado.exe
+RDI_PYTHON3: C:/Vivado/2023.2\tps\win64\python-3.8.3
+RDI_PYTHON3_VERSION: 3.8.3
+RDI_PYTHONHOME: C:/Vivado/2023.2\tps\win64\python-3.8.3
+RDI_PYTHONPATH: C:/Vivado/2023.2\tps\win64\python-3.8.3;C:/Vivado/2023.2\tps\win64\python-3.8.3\bin;C:/Vivado/2023.2\tps\win64\python-3.8.3\lib;C:/Vivado/2023.2\tps\win64\python-3.8.3\lib\site-packages
+RDI_PYTHON_LD_LIBPATH: C:/Vivado/2023.2\tps\win64\python-3.8.3\lib
+RDI_SESSION_INFO: C:\Users\coren\Documents\Unif\Digitalarchitectureanddesign\elech409_project:PC-CORENTIN-21-12-23_15-32-36,42
+RDI_SHARED_DATA: C:/SharedData/2023.2/data
+RDI_TPS_ROOT: C:/Vivado/2023.2/tps/win64
+RDI_USE_JDK17: True
+RDI_VERBOSE: False
+XILINX: C:/Vivado/2023.2/ids_lite/ISE
+XILINX_DSP: C:/Vivado/2023.2/ids_lite/ISE
+XILINX_HLS: C:/Vitis_HLS/2023.2
+XILINX_PLANAHEAD: C:/Vivado/2023.2
+XILINX_VIVADO: C:/Vivado/2023.2
+XILINX_VIVADO_HLS: C:/Vivado/2023.2
+_RDI_BINROOT: C:\Vivado\2023.2\bin
+_RDI_CWD: C:\Users\coren\Documents\Unif\Digital architecture and design\elech409_project
+
+
+GUI allocated memory:	512 MB
+GUI max memory:		4,072 MB
+Engine allocated memory: 759 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// Opening Vivado Project: C:\Users\coren\Documents\Unif\Digital architecture and design\elech409_project\elech409_project.xpr. Version: Vivado v2023.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project {C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/elech409_project.xpr} 
+// HMemoryUtils.trashcanNow. Engine heap size: 780 MB. GUI used memory: 69 MB. Current time: 12/21/23, 3:33:00 PM CET
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project {C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/elech409_project.xpr} 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/elech409_project.gen/sources_1'. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 125 MB (+128453kb) [00:00:25]
+// [Engine Memory]: 1,111 MB (+1013598kb) [00:00:25]
+// WARNING: HEventQueue.dispatchEvent() is taking  3604 ms.
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Vivado/2023.2/data/ip'. 
+// Project name: elech409_project; location: C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project; part: xc7a35tcpg236-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:42 ; elapsed = 00:00:18 . Memory (MB): peak = 1518.145 ; gain = 260.984 
+dismissDialog("Open Project"); // bq (Open Project Progress)
+// [GUI Memory]: 137 MB (+6272kb) [00:00:29]
+// [GUI Memory]: 151 MB (+6995kb) [00:00:35]
+// Elapsed time: 37 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 4); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+// PAPropertyPanels.initPanels (Basys-3-Master.xdc) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, Basys-3-Master.xdc]", 6, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, Basys-3-Master.xdc]", 6, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+// [Engine Memory]: 1,208 MB (+43046kb) [00:01:09]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,208 MB. GUI used memory: 75 MB. Current time: 12/21/23, 3:33:55 PM CET
+selectCodeEditor("Basys-3-Master.xdc", 13, 120); // ad (Basys-3-Master.xdc)
+selectCodeEditor("Basys-3-Master.xdc", 9, 183); // ad (Basys-3-Master.xdc)
+selectCodeEditor("Basys-3-Master.xdc", 691, 197); // ad (Basys-3-Master.xdc)
+selectCodeEditor("Basys-3-Master.xdc", 794, 359); // ad (Basys-3-Master.xdc)
+selectButton(RDIResourceCommand.RDICommands_LINE_COMMENT, (String) null); // B (RDIResourceCommand.RDICommands_LINE_COMMENT)
+selectCodeEditor("Basys-3-Master.xdc", 344, 241); // ad (Basys-3-Master.xdc)
+selectCodeEditor("Basys-3-Master.xdc", 723, 159); // ad (Basys-3-Master.xdc)
+selectCodeEditor("Basys-3-Master.xdc", 711, 199, false, false, true, false, false); // ad (Basys-3-Master.xdc) - Alt Key
+selectCodeEditor("Basys-3-Master.xdc", 711, 226, false, false, true, false, false); // ad (Basys-3-Master.xdc) - Alt Key
+selectCodeEditor("Basys-3-Master.xdc", 715, 172, false, false, true, false, false); // ad (Basys-3-Master.xdc) - Alt Key
+// Elapsed time: 10 seconds
+selectCodeEditor("Basys-3-Master.xdc", 755, 116); // ad (Basys-3-Master.xdc)
+// Elapsed time: 79 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 8); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 9); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 9); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectButton(RDIResourceCommand.RDICommands_SAVE_FILE, (String) null); // B (RDIResourceCommand.RDICommands_SAVE_FILE)
+// TclEventType: FILE_SET_CHANGE
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // t (PAResourceOtoP.PAViews_PROJECT_SUMMARY, PlanAheadTabProject Summary)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 8, true, false, false, false, true, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al (PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy)
+selectMenuItem(PAResourceCommand.PACommandNames_EDIT_SIMULATION_SETS, "Edit Simulation Sets..."); // ao (PAResourceCommand.PACommandNames_EDIT_SIMULATION_SETS, edit_simulation_sets_menu)
+// Run Command: PAResourceCommand.PACommandNames_EDIT_SIMULATION_SETS
+selectComboBox(PAResourceQtoS.SrcChooserPanel_ADD_FILES_BELOW_TO_THIS_SIMULATION_SET, "Create Simulation Set...", 8); // aw.g (PAResourceQtoS.SrcChooserPanel_ADD_FILES_BELOW_TO_THIS_SIMULATION_SET)
+setText("PAResourceQtoS.SrcChooserPanel_ENTER_SIMULATION_SET_NAME", "Basys3"); // BasicOptionPaneUI.MultiplexingTextField (PAResourceQtoS.SrcChooserPanel_ENTER_SIMULATION_SET_NAME)
+// TclEventType: FILE_SET_NEW
+selectButton("OptionPane.button", "OK"); // JButton (OptionPane.button)
+// Tcl Message: create_fileset -simset Basys3 
+// Elapsed Time for: 'L.f': 03m:22s
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_OR_CREATE_SOURCE_FILE, "Add"); // B (PAResourceQtoS.SrcChooserPanel_ADD_OR_CREATE_SOURCE_FILE, Add)
+selectMenuItem(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // ao (PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, Add Files...)
+// Elapsed Time for: 'L.f': 03m:24s
+// Elapsed Time for: 'L.f': 03m:26s
+// Elapsed Time for: 'L.f': 03m:28s
+// Elapsed time: 14 seconds
+setFileChooser("C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd");
+// Elapsed time: 47 seconds
+selectButton("FINISH", "Finish"); // JButton (FINISH)
+// 'av' command handler elapsed time: 75 seconds
+dismissDialog("Add Sources"); // aw (dialog0)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: set_property SOURCE_SET sources_1 [get_filesets Basys3] 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset Basys3 -norecurse {{C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd}} 
+// Elapsed Time for: 'L.f': 04m:26s
+// Elapsed Time for: 'L.f': 04m:28s
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3]", 9); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 14); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 14); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, aes_encryption_sim]", 15); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, aes_encryption_sim]", 15); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3]", 9); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3]", 9); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, true, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al (PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy)
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao (PAResourceCommand.PACommandNames_ADD_SOURCES, add_sources_menu)
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a (PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN)
+selectButton("NEXT", "Next >"); // JButton (NEXT)
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_OR_CREATE_SOURCE_FILE, "Add"); // B (PAResourceQtoS.SrcChooserPanel_ADD_OR_CREATE_SOURCE_FILE, Add)
+selectMenuItem(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // ao (PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, Add Files...)
+setFileChooser("C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd");
+selectButton("FINISH", "Finish"); // JButton (FINISH)
+// 'f' command handler elapsed time: 10 seconds
+dismissDialog("Add Sources"); // c (dialog2)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse {{C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd}} 
+// Elapsed Time for: 'L.f': 05m:00s
+// Elapsed Time for: 'L.f': 05m:06s
+// Elapsed time: 47 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 15); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Display]", 15); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3, Display(Behavioral) (Basys3_Display.vhd)]", 11, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3, Display(Behavioral) (Basys3_Display.vhd)]", 11, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Display(Behavioral) (Basys3_Display.vhd)]", 1, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Display(Behavioral) (Basys3_Display.vhd)]", 1, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+// Elapsed time: 22 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 5); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Basys-3-Master.xdc", 0); // o (PlanAheadTabBaseWorkspace_JideTabbedPane)
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // J (PAResourceOtoP.PAViews_CODE, PlanAheadTabCode)
+// Elapsed time: 26 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, Basys3]", 4); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+// Elapsed time: 735 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim]", 8); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim, ShiftRows_tb(ben2) (ShiftRows_tb.vhd)]", 9, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim, ShiftRows_tb(ben2) (ShiftRows_tb.vhd)]", 9, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim, ShiftRows_tb(ben2) (ShiftRows_tb.vhd), uut : ShiftRows(Behavioral) (ShiftRows.vhd)]", 10, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim, ShiftRows_tb(ben2) (ShiftRows_tb.vhd), uut : ShiftRows(Behavioral) (ShiftRows.vhd)]", 10, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+selectCodeEditor("ShiftRows.vhd", 204, 337); // ad (ShiftRows.vhd)
+typeControlKey((HResource) null, "ShiftRows.vhd", 'c'); // ad (ShiftRows.vhd)
+// Elapsed time: 20 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "ShiftRows_tb.vhd", 1); // o (PlanAheadTabBaseWorkspace_JideTabbedPane)
+typeControlKey((HResource) null, "ShiftRows_tb.vhd", 'c'); // ad (ShiftRows_tb.vhd)
+// Elapsed time: 12 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, shiftRows_sim]", 8); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd)]", 8, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd)]", 8); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd), MixColumn_instance : MixColumn(arch_MixColumn) (MixColumn.vhd)]", 9, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd), MixColumn_instance : MixColumn(arch_MixColumn) (MixColumn.vhd)]", 9, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+// Elapsed time: 14 seconds
+selectCodeEditor("MixColumn.vhd", 551, 222); // ad (MixColumn.vhd)
+typeControlKey((HResource) null, "MixColumn.vhd", 'c'); // ad (MixColumn.vhd)
+// Elapsed time: 18 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd)]", 8, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim, MixColumn_tb(arch_MixColumn_tb) (MixColumn_tb.vhd)]", 8, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+selectCodeEditor("MixColumn_tb.vhd", 465, 228); // ad (MixColumn_tb.vhd)
+typeControlKey((HResource) null, "MixColumn_tb.vhd", 'c'); // ad (MixColumn_tb.vhd)
+// Elapsed time: 369 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, mixColumns_sim]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "ShiftRows.vhd", 2); // o (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectCodeEditor("ShiftRows.vhd", 397, 346); // ad (ShiftRows.vhd)
+// Elapsed time: 15 seconds
+selectCodeEditor("ShiftRows.vhd", 301, 195); // ad (ShiftRows.vhd)
+// Elapsed time: 13 seconds
+selectCodeEditor("ShiftRows.vhd", 336, 262); // ad (ShiftRows.vhd)
+// Elapsed time: 12 seconds
+selectCodeEditor("ShiftRows.vhd", 326, 411); // ad (ShiftRows.vhd)
+// Elapsed time: 11 seconds
+selectCodeEditor("ShiftRows.vhd", 329, 346); // ad (ShiftRows.vhd)
+selectCodeEditor("ShiftRows.vhd", 257, 35); // ad (ShiftRows.vhd)
+selectCodeEditor("ShiftRows.vhd", 255, 100); // ad (ShiftRows.vhd)
+selectCodeEditor("ShiftRows.vhd", 251, 245); // ad (ShiftRows.vhd)
+selectCodeEditor("ShiftRows.vhd", 248, 435); // ad (ShiftRows.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 22 seconds
+selectCodeEditor("ShiftRows.vhd", 451, 214); // ad (ShiftRows.vhd)
+// Elapsed Time for: 'L.f': 28m:24s
+typeControlKey((HResource) null, "ShiftRows.vhd", 'c'); // ad (ShiftRows.vhd)
+// Elapsed Time for: 'L.f': 28m:26s
+// Elapsed time: 26 seconds
+selectCodeEditor("ShiftRows.vhd", 356, 313); // ad (ShiftRows.vhd)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "MixColumn.vhd", 3); // o (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectCodeEditor("MixColumn.vhd", 523, 196); // ad (MixColumn.vhd)
+selectCodeEditor("MixColumn.vhd", 0, 76); // ad (MixColumn.vhd)
+// Elapsed time: 24 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, addRoundKey_sim]", 12); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, addRoundKey_sim, AddRoundKey_tb(ben2) (AddRoundKey_tb.vhd)]", 13, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, addRoundKey_sim, AddRoundKey_tb(ben2) (AddRoundKey_tb.vhd)]", 13); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, addRoundKey_sim, AddRoundKey_tb(ben2) (AddRoundKey_tb.vhd), uut : AddRoundKey(Behavioral) (AddRoundKey.vhd)]", 14, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, addRoundKey_sim, AddRoundKey_tb(ben2) (AddRoundKey_tb.vhd), uut : AddRoundKey(Behavioral) (AddRoundKey.vhd)]", 14, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("AddRoundKey.vhd", 448, 389); // ad (AddRoundKey.vhd)

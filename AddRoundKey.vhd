@@ -35,6 +35,7 @@ begin
             for row in 0 to 3 loop
                 add1 <= plain_text_matrix(row,col);
                 add2 <= key_matrix(row,col); 
+                -- Take 1 element in each matrix to xor them
                 output_matrix(row,col) := plain_text_matrix(row,col) xor key_matrix(row,col);                                    
             end loop;
         end loop;

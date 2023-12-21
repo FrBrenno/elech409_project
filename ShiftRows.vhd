@@ -29,14 +29,17 @@ begin
         for row in 0 to 3 loop
             for col in 0 to 3 loop
                 if row = 0 then
+                    -- Row 1 doesn't change of position
                     output_matrix(row,col) := input_data(row,col);
                 elsif row = 1 then
+                    -- Row 2 shift of 1 to the left
                     if col = 0 then
                         output_matrix(row,3) := input_data(row,col);
                     else
                         output_matrix(row,col-1) := input_data(row,col);
                     end if;
                 elsif row = 2 then
+                    -- Row 3 shift of 2 to the left
                     if col = 0 then
                         output_matrix(row,2) := input_data(row,col);
                     elsif col = 1 then
@@ -45,6 +48,7 @@ begin
                         output_matrix(row,col-2) := input_data(row,col);
                     end if;
                 elsif row = 3 then
+                    -- Row 4 shift of 3 to the left
                     if col = 3 then
                         output_matrix(row,0) := input_data(row,col);
                     else

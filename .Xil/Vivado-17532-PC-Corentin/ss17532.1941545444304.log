@@ -1,0 +1,51 @@
+srcscan starts
+=============== Using vdb files for VHDL std libs ===========
+INFO: VHDL library search path for library "std" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/std" (VHDL-1505)
+INFO: VHDL library search path for library "synopsys" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/synopsys" (VHDL-1505)
+INFO: VHDL library search path for library "ieee" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/ieee" (VHDL-1505)
+INFO: VHDL library search path for library "unimacro" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/unimacro" (VHDL-1505)
+INFO: VHDL library search path for library "unisim" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/unisim" (VHDL-1505)
+INFO: VHDL library search path for library "vl" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/vl" (VHDL-1505)
+INFO: VHDL library search path for library "xpm" is now "C:/Vivado/2023.2/data/precomp_hsv/vhdl/xpm" (VHDL-1505)
+-- Analyzing VHDL file "C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Matrix.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'matrix_pkg'
+
+INFO: analyzing package body 'matrix_pkg'
+
+-- Analyzing VHDL file "C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/AddRoundKey.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'AddRoundKey' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'addroundkey' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/AddRoundKey_tb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'AddRoundKey_tb' (VHDL-1012)
+INFO: analyzing architecture 'ben2' of entity 'addroundkey_tb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'Display' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'display' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/LUT_mul2.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'LUT_mul2' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'lut_mul2' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/LUT_mul3.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'LUT_mul3' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'lut_mul3' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/S_box.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'S_box' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 's_box' (VHDL-9006)
+Listing tops:
+VHDLTop: library:xil_defaultlib entity:addroundkey_tb arch:
+VHDLTop: library:xil_defaultlib entity:addroundkey_tb arch:
+VHDLTop: library:xil_defaultlib entity:display arch:
+VHDLTop: library:xil_defaultlib entity:display arch:
+VHDLTop: library:xil_defaultlib entity:lut_mul2 arch:
+VHDLTop: library:xil_defaultlib entity:lut_mul2 arch:
+VHDLTop: library:xil_defaultlib entity:lut_mul3 arch:
+VHDLTop: library:xil_defaultlib entity:lut_mul3 arch:
+VHDLTop: library:xil_defaultlib entity:s_box arch:
+VHDLTop: library:xil_defaultlib entity:s_box arch:
+END of tops
+C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/AddRoundKey_tb.vhd(9): INFO: processing 'AddRoundKey_tb_default(ben2)' (VHDL-1067)
+C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/AddRoundKey.vhd(12): INFO: processing 'AddRoundKey_default(Behavioral)' (VHDL-1067)
+C:/Users/coren/Documents/Unif/Digital architecture and design/elech409_project/Basys3_Display.vhd(4): INFO: processing 'Display_default(Behavioral)' (VHDL-1067)
+C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/LUT_mul2.vhd(4): INFO: processing 'LUT_mul2_default(Behavioral)' (VHDL-1067)
+C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/LUT_mul3.vhd(6): INFO: processing 'LUT_mul3_default(Behavioral)' (VHDL-1067)
+C:/Users/coren/OneDrive/Documents/Unif/Ma2/Digital architecture and design/Project/S_box.vhd(5): INFO: processing 'S_box_default(Behavioral)' (VHDL-1067)
+srcscan exits with return value 0
