@@ -40,14 +40,14 @@ BEGIN
     reset_process : PROCESS
     BEGIN
         rst <= NOT rst;
-        WAIT FOR 800 ns;
+        WAIT FOR 1600 ns;
     END PROCESS;
 
     stimulus : PROCESS
     BEGIN
         plain_text <= x"6BC1BEE22E409F96E93D7E117393172A";
         key <= x"2B7E151628AED2A6ABF7158809CF4F3C";
-        WAIT FOR 400 ns;
+        WAIT FOR 800 ns;
         ASSERT (cipher_text_output = x"85539F4136AD7E3A35407A244C60C16D")
         REPORT "1: INCORRECT OUTPUT\n" SEVERITY note;
         WAIT FOR 5 ns;

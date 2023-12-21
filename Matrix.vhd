@@ -5,22 +5,18 @@ USE ieee.numeric_std.ALL;
 PACKAGE matrix_pkg IS
     -- Type declaration for your matrix
     TYPE Matrix IS ARRAY (NATURAL RANGE <>, NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
-
     -- Function to convert a std_logic_vector to Matrix
     FUNCTION hexaToMatrix(hexa_text : STD_LOGIC_VECTOR) RETURN Matrix;
-
     -- Function to convert a Matrix to std_logic_vector
     FUNCTION matrixToHexa(matrix : Matrix) RETURN STD_LOGIC_VECTOR;
-
     -- Function to get a column from a Matrix
     FUNCTION getColumn(matrix : Matrix; col : INTEGER) RETURN STD_LOGIC_VECTOR;
-
     -- Function to get an element from a std_logic_vector
     FUNCTION getElement(vector : STD_LOGIC_VECTOR; index : INTEGER) RETURN STD_LOGIC_VECTOR;
-
     -- Procedure to replace a column in a Matrix
     PROCEDURE replaceColumn(matrix : INOUT Matrix; col : INTEGER; vector : STD_LOGIC_VECTOR);
 END PACKAGE matrix_pkg;
+
 
 PACKAGE BODY matrix_pkg IS
     FUNCTION hexaToMatrix(hexa_text : STD_LOGIC_VECTOR) RETURN Matrix IS
@@ -35,7 +31,7 @@ PACKAGE BODY matrix_pkg IS
         FOR col IN 0 TO 3 LOOP
             FOR row IN 0 TO 3 LOOP
                 IF index < hexa_text'length THEN
-                    result(row, col) := STD_LOGIC_VECTOR(unsigned(hexa_text(127 - (index * 8) DOWNTO 127 - (7 + index * 8))));
+                    result(row, col) := hexa_text(127 - (index * 8) DOWNTO 127 - (7 + index * 8));
                     index := index + 1;
                 END IF;
             END LOOP;
