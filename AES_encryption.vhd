@@ -84,7 +84,8 @@ ARCHITECTURE arch_aes_encryption OF AES_encryption IS
 BEGIN
     -- Each step should take 1 clock cycle
     -- Instantiate components
-    addroundkey_proc : addRoundKey PORT MAP(
+
+    addroundkey_proc : addRoundKey PORT MAP( -- standalone addRoundKey instance
         plain_text_matrix => addroundkey_in,
         key_matrix => key_matrix,
         sum_matrix => addroundkey_out
@@ -118,7 +119,7 @@ BEGIN
         elsif rising_edge(clk) then
             if round_count = 0 then -- first round
                 done <= '0';
-                addroundkey_in <= hexaToMatrix(plain_text); -- changement
+                addroundkey_in <= hexaToMatrix(plain_text);
                 key_matrix <= hexaToMatrix(keys(round_count));
                 round_count <= round_count + 1;
                 currentStep <= subbytes_step;
@@ -127,7 +128,7 @@ BEGIN
                     when subbytes_step =>
                         currentStep <= shiftrows_step;
                     when shiftrows_step =>
-                        addroundkey_in <= shiftrows_out; -- changement
+                        addroundkey_in <= shiftrows_out; -- output of shiftRows goes into standalone addRoundKey instance
                         currentStep <= addroundkey_step;
                     when addroundkey_step =>
                         output_matrix <= addroundkey_out;
@@ -140,10 +141,10 @@ BEGIN
             else -- intermediate rounds
                 case currentStep is
                     when subbytes_step =>
-                        if round_count = 1 then
-                            input_round <= addroundkey_out; -- changement
-                        else
-                            input_round <= output_round; -- changement
+                        if round_count = 1 then -- input from standalone addRoundKey instance
+                            input_round <= addroundkey_out;
+                        else -- input is output from previous round
+                            input_round <= output_round;
                         end if;
                         currentStep <= shiftrows_step;
                     when shiftrows_step =>
