@@ -6,7 +6,7 @@ USE work.matrix_pkg.ALL;
 
 ENTITY AES_encryption IS
     PORT (
-        plain_text, key : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        plain_text: IN STD_LOGIC_VECTOR(127 DOWNTO 0);
         clk : IN STD_LOGIC;
         rst : IN STD_LOGIC;
         cipher_text : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
@@ -38,21 +38,25 @@ ARCHITECTURE arch_aes_encryption OF AES_encryption IS
     END COMPONENT;
 
     -- Signal declarations
-    TYPE Step IS (init_step, addroundkey_step, subbytes_step, shiftrows_step, mixcolumns_step);
-    SIGNAL currentStep : Step := init_step;
-    SIGNAL stepIndex : INTEGER RANGE 0 TO 10 := 0;
+    TYPE Step IS (subbytes_step, shiftrows_step, mixcolumns_step, addroundkey_step);
+    SIGNAL currentStep : Step := subbytes_step;
 
+    signal addroundkey_in : Matrix(0 TO 3, 0 TO 3);
     SIGNAL addroundkey_out : Matrix(0 TO 3, 0 TO 3);
     SIGNAL subbytes_out : Matrix(0 TO 3, 0 TO 3);
     SIGNAL shiftrows_out : Matrix(0 TO 3, 0 TO 3);
     SIGNAL mixcolumns_out : Matrix(0 TO 3, 0 TO 3);
 
-    SIGNAL input_matrix : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL input_round : Matrix(0 TO 3, 0 TO 3);
+    SIGNAL output_round : Matrix(0 TO 3, 0 TO 3);
     SIGNAL key_matrix : Matrix(0 TO 3, 0 TO 3);
     SIGNAL output_matrix : Matrix(0 TO 3, 0 TO 3);
 
-    type hexa_array is array (0 to 9) of std_logic_vector(127 downto 0);
+    SIGNAL round_count : INTEGER := 0;
+
+    type hexa_array is array (0 to 10) of std_logic_vector(127 downto 0);
     signal keys : hexa_array  := (
+        (x"2B7E151628AED2A6ABF7158809CF4F3C"),
         (x"a0fafe1788542cb123a339392a6c7605"),
         (x"f2c295f27a96b9435935807a7359f67f"),
         (x"3d80477d4716fe3e1e237e446d7a883b"),
@@ -81,72 +85,83 @@ BEGIN
     -- Each step should take 1 clock cycle
     -- Instantiate components
     addroundkey_proc : addRoundKey PORT MAP(
-        plain_text_matrix => input_matrix,
+        plain_text_matrix => addroundkey_in,
         key_matrix => key_matrix,
         sum_matrix => addroundkey_out
     );
-    subbytes_proc : subBytes PORT MAP(
-        input_data => addroundkey_out,
+
+    subbytes_round_proc : subBytes PORT MAP(
+        input_data => input_round,
         output_data => subbytes_out
     );
-    shiftrows_proc : shiftRows PORT MAP(
+    shiftrows_round_proc : shiftRows PORT MAP(
         input_data => subbytes_out,
         output_data => shiftrows_out
     );
-    mixcolumns_proc : mixColumn PORT MAP(
+    mixcolumns_round_proc : mixColumn PORT MAP(
         input_data => shiftrows_out,
         output_data => mixcolumns_out
     );
+    addroundkey_round_proc : addRoundKey PORT MAP(
+        plain_text_matrix => mixcolumns_out,
+        key_matrix => key_matrix,
+        sum_matrix => output_round
+    );
 
-    round_scheduler : PROCESS (clk, rst)
-        VARIABLE round_count : INTEGER RANGE 0 TO 10 := 0;
-    BEGIN
-        IF rst = '1' THEN
-            stepIndex <= 0; -- Reset the round counter
-            input_matrix <= zeroMatrix;
-            key_matrix <= zeroMatrix;
-            output_matrix <= zeroMatrix;
-        ELSIF rising_edge(clk) THEN
-            IF currentStep = init_step THEN
-                done <= '0';
-                input_matrix <= hexaToMatrix(plain_text);
-                key_matrix <= hexaToMatrix(key);
-                currentStep <= addroundkey_step;
-            ELSIF currentStep = addroundkey_step THEN
-                currentStep <= subbytes_step;
-            ELSIF currentStep = subbytes_step THEN
-                currentStep <= shiftrows_step;
-            ELSIF currentStep = shiftrows_step THEN
-                if round_count = 10 then
-                    currentStep <= addroundkey_step;
-                else
-                    currentStep <= mixcolumns_step;
-                end if;
-            ELSIF currentStep = mixcolumns_step THEN
-                currentStep <= addroundkey_step;
-            END IF;
-
-            -- One Step done
-            stepIndex <= stepIndex + 1;
-
-            -- One round done
-            IF stepIndex = 4 THEN
-                input_matrix <= mixcolumns_out;
+    -- State machine process
+    process(clk, rst)
+    begin
+        if rst = '1' then
+            currentStep <= subbytes_step;
+            round_count <= 0;
+        elsif rising_edge(clk) then
+            if round_count = 0 then
+                addroundkey_in <= hexaToMatrix(plain_text);
                 key_matrix <= hexaToMatrix(keys(round_count));
-
-                round_count := round_count + 1;
-                stepIndex <= 1;
-            END IF;
-
-            -- All rounds done
-            IF round_count = 10 THEN
-                output_matrix <= addroundkey_out;
-                done <= '1';
-                stepIndex <= 0;
-                round_count := 0;
-            END IF;
-        END IF;
-    END PROCESS round_scheduler;
+                round_count <= round_count + 1;
+            elsif round_count = 11 then
+                case currentStep is
+                    when subbytes_step =>
+                        currentStep <= shiftrows_step;
+                        output_matrix <= output_round;
+                    when shiftrows_step =>
+                        addroundkey_in <= shiftrows_out;
+                        currentStep <= addroundkey_step;
+                        output_matrix <= subbytes_out;
+                    when addroundkey_step =>
+                        currentStep <= subbytes_step;
+                        output_matrix <= addroundkey_out;
+                        done <= '1';
+                    when others =>
+                        null;
+                end case;
+            else
+                case currentStep is
+                    when subbytes_step =>
+                        if round_count = 1 then
+                            input_round <= addroundkey_out;
+                            output_matrix <= addroundkey_out;
+                        else
+                            input_round <= output_round;
+                            output_matrix <= output_round;
+                        end if;
+                        currentStep <= shiftrows_step;
+                    when shiftrows_step =>
+                        currentStep <= mixcolumns_step;
+                        output_matrix <= subbytes_out;
+                    when mixcolumns_step =>
+                        currentStep <= addroundkey_step;
+                        output_matrix <= shiftrows_out;
+                    when addroundkey_step =>
+                        currentStep <= subbytes_step;
+                        key_matrix <= hexaToMatrix(keys(round_count));
+                        round_count <= round_count + 1;   
+                        output_matrix <= mixcolumns_out;               
+                end case;
+                
+            end if;
+        end if;
+    END PROCESS;
 
     -- Assign the final result to the cipher_text
     cipher_text <= matrixToHexa(output_matrix);
