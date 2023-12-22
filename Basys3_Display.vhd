@@ -33,7 +33,7 @@ architecture Behavioral of Display is
     -- Signals from AES module
     signal plain_text : std_logic_vector(127 downto 0);
     signal cipher_text : std_logic_vector(127 downto 0);
-    signal done, rst : std_logic;
+    signal done : std_logic;
 
     -- Signals to threat the signals of the segment and of the anode
     signal SEG_OUT : std_logic_vector(6 downto 0);
@@ -47,7 +47,7 @@ architecture Behavioral of Display is
     signal activation : std_logic := '0';
 
 begin
-
+    
     process(CLK_100MHZ,activation,RST)
         -- Process leading the reset mode and the activation 
         -- of the displaying once the encryption is done
