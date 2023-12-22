@@ -109,29 +109,30 @@ BEGIN
     );
 
     -- State machine process
-    process(clk, rst)
+    process(clk, rst, plain_text)
     begin
         if rst = '1' then
             currentStep <= subbytes_step;
+            done <= '0';
             round_count <= 0;
         elsif rising_edge(clk) then
             if round_count = 0 then -- first round
                 done <= '0';
-                addroundkey_in <= hexaToMatrix(plain_text);
+                addroundkey_in <= hexaToMatrix(plain_text); -- changement
                 key_matrix <= hexaToMatrix(keys(round_count));
                 round_count <= round_count + 1;
+                currentStep <= subbytes_step;
             elsif round_count = 11 then -- last round
                 case currentStep is
                     when subbytes_step =>
                         currentStep <= shiftrows_step;
-                        output_matrix <= output_round;
                     when shiftrows_step =>
-                        addroundkey_in <= shiftrows_out;
+                        addroundkey_in <= shiftrows_out; -- changement
                         currentStep <= addroundkey_step;
-                        output_matrix <= subbytes_out;
                     when addroundkey_step =>
                         output_matrix <= addroundkey_out;
                         done <= '1';
+                        -- reset
                         round_count <= 0;
                     when others =>
                         null;
@@ -140,24 +141,19 @@ BEGIN
                 case currentStep is
                     when subbytes_step =>
                         if round_count = 1 then
-                            input_round <= addroundkey_out;
-                            output_matrix <= addroundkey_out;
+                            input_round <= addroundkey_out; -- changement
                         else
-                            input_round <= output_round;
-                            output_matrix <= output_round;
+                            input_round <= output_round; -- changement
                         end if;
                         currentStep <= shiftrows_step;
                     when shiftrows_step =>
                         currentStep <= mixcolumns_step;
-                        output_matrix <= subbytes_out;
                     when mixcolumns_step =>
                         currentStep <= addroundkey_step;
-                        output_matrix <= shiftrows_out;
                     when addroundkey_step =>
                         currentStep <= subbytes_step;
                         key_matrix <= hexaToMatrix(keys(round_count));
                         round_count <= round_count + 1;   
-                        output_matrix <= mixcolumns_out;               
                 end case;
             end if;
         end if;
