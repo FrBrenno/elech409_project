@@ -115,11 +115,12 @@ BEGIN
             currentStep <= subbytes_step;
             round_count <= 0;
         elsif rising_edge(clk) then
-            if round_count = 0 then
+            if round_count = 0 then -- first round
+                done <= '0';
                 addroundkey_in <= hexaToMatrix(plain_text);
                 key_matrix <= hexaToMatrix(keys(round_count));
                 round_count <= round_count + 1;
-            elsif round_count = 11 then
+            elsif round_count = 11 then -- last round
                 case currentStep is
                     when subbytes_step =>
                         currentStep <= shiftrows_step;
@@ -129,13 +130,13 @@ BEGIN
                         currentStep <= addroundkey_step;
                         output_matrix <= subbytes_out;
                     when addroundkey_step =>
-                        currentStep <= subbytes_step;
                         output_matrix <= addroundkey_out;
                         done <= '1';
+                        round_count <= 0;
                     when others =>
                         null;
                 end case;
-            else
+            else -- intermediate rounds
                 case currentStep is
                     when subbytes_step =>
                         if round_count = 1 then
@@ -158,7 +159,6 @@ BEGIN
                         round_count <= round_count + 1;   
                         output_matrix <= mixcolumns_out;               
                 end case;
-                
             end if;
         end if;
     END PROCESS;
