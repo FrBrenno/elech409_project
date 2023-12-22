@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_unsigned.all;
+
 entity Display is Port (
     CLK_100MHZ : in std_logic;
     btnC : in std_logic;
@@ -21,6 +22,18 @@ entity Display is Port (
 ); end Display;
 
 architecture Behavioral of Display is
+    component AES_encryption is Port (
+        plain_text: IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        clk : IN STD_LOGIC;
+        rst : IN STD_LOGIC;
+        cipher_text : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
+        done : OUT STD_LOGIC
+    ); end component;
+
+    -- Signals from AES module
+    signal plain_text : std_logic_vector(127 downto 0);
+    signal cipher_text : std_logic_vector(127 downto 0);
+    signal done, rst : std_logic;
 
     -- Signals to threat the signals of the segment and of the anode
     signal SEG_OUT : std_logic_vector(6 downto 0);
@@ -46,13 +59,11 @@ begin
         elsif rising_edge(CLK_100MHZ) then
             -- This is a control to ensure the pressure on the button
             led0 <= btnC;
-            led1 <= btnR;
-                        
+            led1 <= btnR; 
             if activation = '0' then
                 -- Central button launch the encryption
                 activation <= btnC;
             end if;
-            
             if RST = '0' then
                 -- Right button initialise the reset
                 -- To rebegin the encryption after a reset
@@ -115,15 +126,12 @@ begin
                 when "00" => ANODE_ACT <= "0111";
                 -- S --
                 SEG_BCD <= "0101";
-    
                 when "01" => ANODE_ACT <= "1011";
                 -- E --
                 SEG_BCD <= "1110";
-    
                 when "10" => ANODE_ACT <= "1101";
                 -- A --
                 SEG_BCD <= "1010";
-    
                 when "11" => ANODE_ACT <= "1110";
                 -- Nothing --
                 SEG_BCD <= "1111";
