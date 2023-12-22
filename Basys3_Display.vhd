@@ -24,7 +24,7 @@ entity Display is Port (
 architecture Behavioral of Display is
     component AES_encryption is Port (
         plain_text: IN STD_LOGIC_VECTOR(127 DOWNTO 0);
-        clk : IN STD_LOGIC;
+        CLK_100MHZ : IN STD_LOGIC;
         rst : IN STD_LOGIC;
         cipher_text : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
         done : OUT STD_LOGIC
@@ -47,10 +47,20 @@ architecture Behavioral of Display is
     signal activation : std_logic := '0';
 
 begin
+
+    AES_process : AES_encryption PORT MAP(
+            plain_text => plain_text,
+            CLK_100MHZ => CLK_100MHZ,
+            rst => RST,
+            cipher_text => cipher_text,
+            done => done
+        );
     
-    process(CLK_100MHZ,activation,RST)
+    activation_onBasys3 : process(CLK_100MHZ,activation,RST)
         -- Process leading the reset mode and the activation 
         -- of the displaying once the encryption is done
+        
+        -- Synchro le RST avec celui du AES module
     begin    
         if RST = '1' then
             activation <= '0';
@@ -58,10 +68,14 @@ begin
             
         elsif rising_edge(CLK_100MHZ) then
             -- This is a control to ensure the pressure on the button
+            
+            -- Activation becomes 1 when the center button of the Basys 3 is pressed
             led0 <= btnC;
             led1 <= btnR; 
             if activation = '0' then
                 -- Central button launch the encryption
+                
+                -- When activation becomes 1 the AES encryption must start
                 activation <= btnC;
             end if;
             if RST = '0' then
@@ -72,6 +86,13 @@ begin
                 RST <= btnR;
             end if;
         end if;                   
+    end process;
+    
+    start_AES : process(CLK_100MHZ, activation)
+    begin
+        if activation = '1' then
+            -- START AES ENCRYPTION
+        end if;
     end process;
     
     process(SEG_BCD)
@@ -115,13 +136,13 @@ begin
     
     SEG_active_Count <= refresh_counter(19 downto 18);
     
-    process(SEG_active_Count,activation)
+    process(SEG_active_Count,done)
         -- This process lead the Anode displaying 
         -- The data (AES in our case)
         -- If activation is at 1 we display AES
         -- Otherwise we display nothing
     begin
-        if activation = '1' then
+        if done = '1' then
             case SEG_active_Count is
                 when "00" => ANODE_ACT <= "0111";
                 -- S --
